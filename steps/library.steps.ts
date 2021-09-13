@@ -5,13 +5,13 @@ const feature = loadFeature("./features/library.feature")
 
 defineFeature(feature, (test) => {
   let library: ILibrary
-  let checkedOutBookName: string
 
   beforeEach(() => {
     library = new Library()
   })
 
   test("Check out a book.", ({ given, when, then }) => {
+    let checkedOutBookName: string // keep in test scope
     given(
       "A user wishes to check out a book from a library with these books:",
       (table) => {
