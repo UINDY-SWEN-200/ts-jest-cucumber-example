@@ -32,19 +32,22 @@ defineFeature(feature, (test) => {
   })
 
   test('Try to check out a book that isn\'t present', ({ given, when, then }) => {
-    const myBook = "A random book"
-    const myAttempt: (name:string) => IBook | null = (name:string) => null
+    let myBook = ""
 
     given('a book you want is not in the library', () => {
       library.addBook({name:"another book", author:"somebody"})
     });
 
     when('you attempt to check it out', () => {
-
+      myBook = "my book"
     });
 
     then('it throws an error', () => {
+      const attempt = () => {
+        library.checkoutBook(myBook)
+      }
 
+      expect(attempt).toThrow()
     });
   });
 })
