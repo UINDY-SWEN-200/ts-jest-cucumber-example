@@ -17,7 +17,8 @@
 		"vscode": {
 			"extensions": [
 				"esbenp.prettier-vscode",
-				"Orta.vscode-jest"
+				"Orta.vscode-jest",
+				"alexkrechik.cucumberautocomplete"
 			]
 		}
 	}
