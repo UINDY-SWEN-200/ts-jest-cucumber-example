@@ -13,7 +13,9 @@ export interface ILibrary {
 
 export class Library implements ILibrary {
   private books: IBook[] = []
-
+  public static NO_SUCH_BOOK = "No Such Book"
+  public static BOOK_CHECKED_OUT = "Book Checked Out"
+    
   addBook({ name, author }: Partial<IBook>): void {
     if (name && author) {
       this.books.push({ name, author, checkedOut: false })
@@ -25,9 +27,17 @@ export class Library implements ILibrary {
   }
 
   checkoutBook(name: string): void {
+    // Check out a book with the name "name".
+    // if the book doesn't exist, throw an exception
     const aBook: IBook | undefined = this.findBook(name)
     if (aBook) {
-      aBook.checkedOut = true
+      if (aBook.checkedOut) {
+        throw(new Error(Library.BOOK_CHECKED_OUT))
+      } else {
+        aBook.checkedOut = true
+      }
+    } else {
+      throw(new Error(Library.NO_SUCH_BOOK))
     }
   }
 
@@ -36,6 +46,8 @@ export class Library implements ILibrary {
     const aBook: IBook | undefined = this.findBook(name)
     if (aBook) {
       result = aBook.checkedOut
+    } else {
+      throw(new Error(Library.NO_SUCH_BOOK))
     }
     return result
   }

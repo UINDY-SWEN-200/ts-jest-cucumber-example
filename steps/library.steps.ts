@@ -30,4 +30,21 @@ defineFeature(feature, (test) => {
       expect(library.isCheckedOut(checkedOutBookName)).toBe(true)
     })
   })
+
+  test('Try to check out a book that isn\'t present', ({ given, when, then }) => {
+    const myBook = "A random book"
+    const myAttempt: (name:string) => IBook | null = (name:string) => null
+
+    given('a book you want is not in the library', () => {
+      library.addBook({name:"another book", author:"somebody"})
+    });
+
+    when('you attempt to check it out', () => {
+
+    });
+
+    then('it throws an error', () => {
+
+    });
+  });
 })
